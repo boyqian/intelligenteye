@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.upsoft.intelligenteye.dao.AreaMapper" >
+
+  <resultMap id="BaseResultMap" type="com.upsoft.intelligenteye.domain.po.Area" >
+    <id column="area_id" property="id" jdbcType="INTEGER" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="priority" property="priority" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <!-- 新增Area -->
+  <insert id="insertArea" parameterType="com.upsoft.intelligenteye.domain.po.Area">
+    INSERT INTO t_area (area_id,area_name,priority,create_time)
+    VALUES (#{id},#{areaName},#{priority},#{createTime})
+  </insert>
+
+  <!-- 通过用户主键ID查找Area对象 -->
+  <select id="getAreaById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT area_id,area_name,priority,create_time FROM t_area WHERE area_id=#{id}
+  </select>
+
+  <!-- 分页查找Area -->
+  <select id="listAreaByPage" resultMap="BaseResultMap">
+    SELECT area_id,area_name,priority,create_time FROM t_area
+  </select>
+
+</mapper>
